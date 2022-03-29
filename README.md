@@ -19,6 +19,32 @@
  - Container mysql                               Started                           1.7s
 ```
 
+`docker compose logs mysql --follow`
+
+```
+mysql  | 2022-03-29 04:01:35+00:00 [Note] [Entrypoint]: Creating user mysqluser
+mysql  |
+mysql  | 2022-03-29 04:01:35+00:00 [Note] [Entrypoint]: /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init-script.sql
+mysql  |
+```
+
+```
+mysql  | 2022-03-29T04:01:38.297479Z 0 [Note] Event Scheduler: Loaded 0 events
+mysql  | 2022-03-29T04:01:38.297846Z 0 [Note] mysqld: ready for connections.
+mysql  | Version: '5.7.37'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+```
+
+`mysql -h localhost -P 3306 -u root -pmysqlrootpassword -e "select * from demo.demo_table"`
+
+```
+mysql: [Warning] Using a password on the command line interface can be insecure.
++----+------+
+| id | text |
++----+------+
+|  1 | Demo |
++----+------+
+```
+
 `docker-compose down`
 
 ```
